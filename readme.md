@@ -1,43 +1,61 @@
-# Este é um teste para desenvolvedores
+# Desafio SCF Brasil
 
-# possui 5 testes
+## Como executar o projeto em ambiente local?
 
-## Introdução
+Clone este repositório execultando o seguinte comando:
 
-Este projeto possui um banco de dados fake em fakeData.js com apenas um registro.
-A ideia é melhorar e o CRUD escrito nos 4 arquivos de teste abaixo.
+```bash
+git clolne
+```
 
-Será a validada a forma de escrita de código.
-Escreva códigos que humanos consigam entender.
+Na raiz do projeto execulte o seguinte comando:
 
-Fique a vontade para fazer modificaçoes nos serviços, comentários em código, estrutura, mas seja objetivo.
+```bash
+npm run dev
+```
 
-## teste1.js
+O projeto ficará disponível na porta 3000 da sua máquina local.
 
-GET em /user 
+## Rotas
 
-Possuimos neste arquivo um serviço que faz uma busca no banco fake e retorna um registro.
-Este código funciona, mas é possivel melhorar.
-Veja o que pode deixar ele melhor escrito e mais performatico.
+1. GET `/users` (retorna todos os usuários)
 
-## teste2.js
+2. GET `/user?name={userName}` (retorna o usuário especificado)
 
-POST em /users, descubra a intenção dele e o corrija.
+3. POST /user (cria um usuário)
 
-## teste3.js
+   Enviando um `body` do tipo:
 
-Este procura um usuário e o deleta da base.
-Retorne sucesso para o client caso realmente tenha sido excluido e deixe o código mais performatico.
+   ```typescript
+   {
+     name: string;
+     job: string;
+   }
+   ```
 
-## teste4.js
+4. PUT `/user?id={userId}` (atualiza um usuário específico)
 
-Atualiza os dados de um usuário especifico.
+   Enviando um `body` do tipo:
 
-## teste5.js
+   ```typescript
+   {
+     name: string;
+     job: string;
+   }
+   ```
 
-Retorne quantas vezes determinado usuário foi lido no teste1.
+   Adicione ao `header` da requisição um `Authorization` do tipo `Bearer` com a seginte chave:
 
-## teste 6
+   ```bash
+   access-token
+   ```
 
-Definina uma forma de criar permissão para o usuario, defina se o usuário pode deletar ou atualizar usuários. Crie um middleware para validar essas permissões e adicione no teste4 e teste3.
+5. DELETE `/user?name={userName}` (deleta um usuário específico)
 
+   Adicione ao `header` da requisição um `Authorization` do tipo `Bearer` com a seginte chave:
+
+   ```bash
+   access-token
+   ```
+
+6. GET `/user/access?name={userName}` (retorna a quantidade de vezes que o usuário foi lido)
